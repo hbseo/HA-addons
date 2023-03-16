@@ -1,0 +1,33 @@
+name: Commax controller
+description: Commax wallpad control with EW11
+version: 0.0.2
+slug: wallpad
+init: false
+arch:
+  - aarch64
+  - amd64
+  - armhf
+  - armv7
+  - i386
+map:
+  - share:rw
+boot: auto
+startup: application
+options:
+  ew11:
+    ip: 192.168.x.x
+    port: 8899
+  mqtt:
+    ip: 192.168.x.x
+    username: id
+    password: pw
+    receiveDelay: 10000
+schema:
+  ew11:
+    ip: str
+    port: int
+  mqtt:
+    ip: str
+    username: str
+    password: str
+    receiveDelay: int
