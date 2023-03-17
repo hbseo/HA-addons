@@ -3,15 +3,18 @@ FROM $BUILD_FROM
 
 ENV LANG C.UTF-8
 
-# Set WORKDIR
-WORKDIR /share
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
-# Copy data for add-on
+RUN apk add --no-cache\
+    nodejs \
+    npm \
+    git
+
+COPY package.json /
+COPY index.js /
+RUN cd / && npm install --unsafe-perm
+
 COPY run.sh /
 RUN chmod a+x /run.sh
 
-# Install requirments for add-on
-RUN apk add --no-cache npm
-RUN npm install mqtt
-
-CMD [ "/run.sh" ]
+CMD ["/run.sh"]
