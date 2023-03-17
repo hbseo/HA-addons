@@ -117,6 +117,7 @@ function handleReceiveEW11Data(data) {
         if (device) {
             let topic = `${CONST.TOPIC_PREFIX}/${device.name}/${device.id}/state`;
             client.publish(topic, device.state);
+            homeStatus[device.name][device.id-1] = device.state;
         }
     });
 }
@@ -138,7 +139,7 @@ function run() {
     });
     target.sentTime = new Date().getTime();
     log(`[Elfin-ew11] write ${target.name}${target.id} ${target.command}`);
-    queue.push(target);
+    // queue.push(target);
 }
 
 setInterval(run, 100);

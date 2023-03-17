@@ -1,6 +1,6 @@
 name: Commax controller
 description: Commax wallpad control with EW11
-version: 0.0.27
+version: 0.0.29
 slug: wallpad
 init: false
 arch:
