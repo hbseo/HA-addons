@@ -1,6 +1,6 @@
 name: Commax controller
 description: Commax wallpad control with EW11
-version: 0.0.29
+version: 0.1.0
 slug: wallpad
 init: false
 arch:
@@ -22,7 +22,6 @@ options:
     ip: 192.168.x.x
     username: id
     password: pw
-    receiveDelay: 10000
 schema:
   ew11:
     ip: str
@@ -32,4 +31,3 @@ schema:
     ip: str
     username: str
     password: str
-    receiveDelay: int
