@@ -94,7 +94,8 @@ function handleReceiveMQTTMessage(topic, message) {
                 queue.push({
                     name: topics[1],
                     id: topics[2],
-                    command: msg
+                    command: msg,
+                    attempt: 0
                 });
             }
         } else {
@@ -139,7 +140,11 @@ function run() {
     });
     target.sentTime = new Date().getTime();
     log(`[Elfin-ew11] write ${target.name}${target.id} ${target.command}`);
-    // queue.push(target);
+
+    if (target.attempt < CONFIG.reSend) {
+        target.attempt = target.attempt + 1;
+        queue.push(target);
+    }
 }
 
-setInterval(run, 100);
+setInterval(run, 200);

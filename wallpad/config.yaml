@@ -1,6 +1,6 @@
 name: Commax controller
 description: Commax wallpad control with EW11
-version: 0.1.0
+version: 0.1.1
 slug: wallpad
 init: false
 arch:
@@ -18,6 +18,7 @@ options:
     ip: 192.168.x.x
     port: 8899
     sendDelay: 100
+    reSend: 3
   mqtt:
     ip: 192.168.x.x
     username: id
@@ -27,6 +28,7 @@ schema:
     ip: str
     port: int
     sendDelay: int
+    reSend: int(1, 5)
   mqtt:
     ip: str
     username: str
