@@ -1,6 +1,6 @@
 {
   "name": "wallpad",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "commax controller",
   "author": "hbseo <gusqja8753@gmail.com>",
   "main": "index.js",

@@ -128,7 +128,7 @@ function run() {
     if (queue.length === 0) return;
 
     let delay = new Date().getTime() - lastReceive;
-    if (delay < CONFIG.sendDelay) return;
+    if (delay < CONFIG.ew11.sendDelay) return;
 
     let target = queue.shift();
     let command = CONST.DEVICE_COMMAND.find(device => device.name === target.name && device.id === target.id && device.command === target.command);
@@ -141,7 +141,7 @@ function run() {
     target.sentTime = new Date().getTime();
     log(`[Elfin-ew11] write ${target.name}${target.id} ${target.command}`);
 
-    if (target.attempt < CONFIG.reSend) {
+    if (target.attempt < CONFIG.ew11.reSend) {
         target.attempt = target.attempt + 1;
         queue.push(target);
     }
