@@ -28,7 +28,7 @@ schema:
     ip: str
     port: int
     sendDelay: int
-    reSend: int(1, 5)
+    reSend: int
   mqtt:
     ip: str
     username: str
