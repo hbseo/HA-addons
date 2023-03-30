@@ -95,7 +95,7 @@ function handleReceiveMQTTMessage(topic, message) {
                     name: topics[1],
                     id: topics[2],
                     command: msg,
-                    attempt: 0
+                    attempt: 1
                 });
             }
         } else {
@@ -131,6 +131,12 @@ function run() {
     if (delay < CONFIG.ew11.sendDelay) return;
 
     let target = queue.shift();
+
+    let state = CONST.DEVICE_STATE.find(device => device.name === target.name && device.id === target.id && device.state === target.command);
+    if (state && homeStatus['light'][state.id-1] === state.state) {
+        return;
+    }
+
     let command = CONST.DEVICE_COMMAND.find(device => device.name === target.name && device.id === target.id && device.command === target.command);
     let hex = Buffer.alloc(8, command.hex, 'hex');
     socket.write(hex, (err) => {
@@ -147,4 +153,4 @@ function run() {
     }
 }
 
-setInterval(run, 200);
+setInterval(run, CONFIG.interval);
